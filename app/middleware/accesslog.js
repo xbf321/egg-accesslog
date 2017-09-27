@@ -8,12 +8,12 @@ module.exports = (options, app) => {
         yield next;
         const data = {
             ip: this.request.header['x-forwarded-for'] || this.ip,
-            method: this.request.method,
-            url: this.request.url,
-            host: this.request.header.host || '-',
-            protocol: this.request.protocol,
+            method: this.method,
+            url: this.url,
+            host: this.host || '-',
+            protocol: this.protocol,
             statusCode: this.response.status || '-',
-            contentLength: this.response.header['content-length'] || '-',
+            contentLength: this.length || '-',
             userAgent: this.request.header['user-agent'] || '-',
             referer: this.request.header.referer || '-',
             datetime: utility.logDate(','),
