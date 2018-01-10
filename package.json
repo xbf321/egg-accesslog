@@ -1,6 +1,6 @@
 {
   "name": "egg-accesslog",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "accesslog for egg",
   "eggPlugin": {
     "name": "accesslog"

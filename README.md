@@ -20,6 +20,13 @@ exports.accesslog = {
 };
 ```
 
+> 如果使用 nginx 或其他反向代理服务器，请 **必须** 设置 **proxy = true**，不然获得的 ip 是本机ip，非远程机器的 ip.
+
+    ```
+    // {app_root}/config/config.default.js
+    config.proxy = true
+    ```
+
 ## Configuration
 
 ```js
@@ -34,11 +41,14 @@ exports.accesslog = {
     *   - {String} url 
     *   - {String} host
     *   - {String} protocol 
+    *   - {String} httpVersion
     *   - {String} statusCode
     *   - {String} contentLength 
     *   - {String} userAgent
     *   - {String} referer
     *   - {String} datetime
+    *   - {String} responseTime
+    *   - {String} xForwardedFor
     * @return {String} 返回格式
     **/
     format: function(data) {
@@ -52,8 +62,10 @@ exports.accesslog = {
 
 默认格式：
 
+datetime ip "method url protocol/httpVersion" responseTime statusCode contentLength "referer" "userAgent" "host" "xForwardedFor"
+
 ```
-2017-09-18 17:00:18,350 127.0.0.1 "GET /debug http" 200 5 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36" "127.0.0.1:7001"
+2017-09-18 17:00:18,350 127.0.0.1 "GET /debug http/1.0" 12 200 5 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36" "127.0.0.1:7001" "192.168.1.1"
 ```
 
 ## Questions & Suggestions
