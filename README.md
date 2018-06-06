@@ -51,7 +51,7 @@ exports.accesslog = {
     *   - {String} xForwardedFor
     * @return {String} 返回格式
     **/
-    format: function(data) {
+    format: function(data, ctx) {
         return `${data.ip}`;
     }
 };

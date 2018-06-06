@@ -27,7 +27,7 @@ module.exports = (options, app) => {
         let content = '';
         if (typeof options.format === 'function') {
             // 自定义格式
-            content = options.format(data);
+            content = options.format(data, this);
         } else {
             content = util.format('%s %s "%s %s %s/%s" %s %s %s "%s" "%s" "%s" "%s"',
                 data.datetime,
